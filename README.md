@@ -18,3 +18,14 @@
         proxy_set_header X-Forwarded-Proto $scheme;
     }
   ```
+## 使用示例：
+
+```https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js```
+
+```https://gh.jiasu.in/raw.githubusercontent.com/0-RTT/telegraph/main/worker.js```
+
+```git clone https://gh.jiasu.in/https://github.com/0-RTT/telegraph```
+
+```wget https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js```
+
+```curl -O https://gh.jiasu.in/https://raw.githubusercontent.com/0-RTT/telegraph/main/worker.js```
