@@ -1,11 +1,15 @@
 # ghproxy-go
 ## 一键安装
 
-```bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ install```
+```
+bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ install
+```
 
 ## 一键卸载
 
-```bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ remove```
+```
+bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ remove
+```
 
 ## 配置nginx反代
 
@@ -18,14 +22,18 @@
         proxy_set_header X-Forwarded-Proto $scheme;
     }
   ```
-## 使用示例：
+## 在域名后拼接 GitHub 链接即可，协议头可以选择性添加
 
-```https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js```
+```
+示例：
 
-```https://gh.jiasu.in/raw.githubusercontent.com/0-RTT/telegraph/main/worker.js```
+https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js
 
-```git clone https://gh.jiasu.in/https://github.com/0-RTT/telegraph```
+https://gh.jiasu.in/raw.githubusercontent.com/0-RTT/telegraph/main/worker.js
 
-```wget https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js```
+git clone https://gh.jiasu.in/https://github.com/0-RTT/telegraph
 
-```curl -O https://gh.jiasu.in/https://raw.githubusercontent.com/0-RTT/telegraph/main/worker.js```
+wget https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js
+
+curl -O https://gh.jiasu.in/https://raw.githubusercontent.com/0-RTT/telegraph/main/worker.js
+```
