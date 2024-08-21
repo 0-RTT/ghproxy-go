@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	sizeLimit = 1024 * 1024 * 1024 * 10
+	sizeLimit = 1024 * 1024 * 1024 * 1
 	host      = "127.0.0.1"
 	port      = 8080
 )
@@ -32,8 +32,16 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, `Service is running.`)
+		c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(`
+			<h1>Service is running.<br>
+			Powered by Github - <a href='https://github.com/0-RTT/ghproxy-go'>0-RTT/ghproxy-go</a>.</h1>
+		`))
 	})
+
+	router.GET("/favicon.ico", func(c *gin.Context) {
+		c.Redirect(http.StatusFound, "https://jiasu.in/favicon.ico")
+	})
+
 
 	router.NoRoute(handler)
 
