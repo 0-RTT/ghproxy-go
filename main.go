@@ -42,7 +42,6 @@ func main() {
 		c.Redirect(http.StatusFound, "https://jiasu.in/favicon.ico")
 	})
 
-
 	router.NoRoute(handler)
 
 	err := router.Run(fmt.Sprintf("%s:%d", host, port))
@@ -94,7 +93,8 @@ func proxy(c *gin.Context, u string) {
 
 	if contentLength, ok := resp.Header["Content-Length"]; ok {
 		if size, err := strconv.Atoi(contentLength[0]); err == nil && size > sizeLimit {
-			c.Redirect(http.StatusFound, u)
+			finalURL := resp.Request.URL.String()
+			c.Redirect(http.StatusFound, finalURL)
 			return
 		}
 	}
