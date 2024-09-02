@@ -2,13 +2,13 @@
 ## 一键安装
 
 ```
-bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ install
+bash -c "$(curl -L https://raw.githubusercontent.com/0-RTT/index/main/ghproxy-go.sh)" @ install
 ```
 
 ## 一键卸载
 
 ```
-bash -c "$(curl -L https://jiasu.in/ghproxy-go.sh)" @ remove
+bash -c "$(curl -L https://raw.githubusercontent.com/0-RTT/index/main/ghproxy-go.sh)" @ remove
 ```
 
 ## 配置nginx反代
