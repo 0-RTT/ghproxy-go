@@ -25,15 +25,16 @@ bash -c "$(curl -L https://raw.githubusercontent.com/0-RTT/index/main/ghproxy-go
 ## 在域名后拼接 GitHub 链接即可，协议头可以选择性添加
 
 ```
-示例：
+https://gh.jiasu.in/github.com/0-RTT/ghproxy-go/blob/main/main.go
 
-https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js
+https://gh.jiasu.in/https://github.com/0-RTT/ghproxy-go/blob/main/main.go
 
-https://gh.jiasu.in/raw.githubusercontent.com/0-RTT/telegraph/main/worker.js
+https://gh.jiasu.in/raw.githubusercontent.com/0-RTT/ghproxy-go/main/main.go
 
-git clone https://gh.jiasu.in/https://github.com/0-RTT/telegraph
+https://gh.jiasu.in/https://raw.githubusercontent.com/0-RTT/ghproxy-go/main/main.go
 
-wget https://gh.jiasu.in/https://github.com/0-RTT/telegraph/blob/main/worker.js
+git clone https://gh.jiasu.in/github.com/0-RTT/ghproxy-go.git
 
-curl -O https://gh.jiasu.in/https://raw.githubusercontent.com/0-RTT/telegraph/main/worker.js
+git clone https://gh.jiasu.in/https://github.com/0-RTT/ghproxy-go.git
+
 ```
