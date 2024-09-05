@@ -33,7 +33,7 @@ func main() {
 
 	// 根路径重定向到 GitHub 页面
 	router.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusFound, "https://github.com/0-RTT/ghproxy-go")
+		c.Redirect(http.StatusMovedPermanently, "https://github.com/0-RTT/ghproxy-go")
 	})
 
 	router.NoRoute(handler)
@@ -88,7 +88,7 @@ func proxy(c *gin.Context, u string) {
 	if contentLength, ok := resp.Header["Content-Length"]; ok {
 		if size, err := strconv.Atoi(contentLength[0]); err == nil && size > sizeLimit {
 			finalURL := resp.Request.URL.String()
-			c.Redirect(http.StatusFound, finalURL)
+			c.Redirect(http.StatusMovedPermanently, finalURL)
 			return
 		}
 	}
