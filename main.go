@@ -31,15 +31,9 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
+	// 根路径重定向到 GitHub 页面
 	router.GET("/", func(c *gin.Context) {
-		c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(`
-			<h1>Service is running.<br>
-			Powered by Github - <a href='https://github.com/0-RTT/ghproxy-go'>0-RTT/ghproxy-go</a>.</h1>
-		`))
-	})
-
-	router.GET("/favicon.ico", func(c *gin.Context) {
-		c.Redirect(http.StatusFound, "https://jiasu.in/favicon.ico")
+		c.Redirect(http.StatusFound, "https://github.com/0-RTT/ghproxy-go")
 	})
 
 	router.NoRoute(handler)
