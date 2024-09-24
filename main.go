@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,13 +26,17 @@ var (
 		regexp.MustCompile(`^(?:https?://)?raw\.github(?:usercontent|)\.com/([^/]+)/([^/]+)/.+?/.+$`),
 		regexp.MustCompile(`^(?:https?://)?gist\.github\.com/([^/]+)/.+?/.+$`),
 	}
+	requestPool = sync.Pool{
+		New: func() interface{} {
+			return &http.Request{}
+		},
+	}
 )
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
-	// 根路径重定向到 GitHub 页面
 	router.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, "https://github.com/0-RTT/ghproxy-go")
 	})
@@ -65,9 +70,13 @@ func handler(c *gin.Context) {
 }
 
 func proxy(c *gin.Context, u string) {
-	req, err := http.NewRequest(c.Request.Method, u, c.Request.Body)
+	req := requestPool.Get().(*http.Request)
+	defer requestPool.Put(req)
+
+	var err error
+	req, err = http.NewRequest(c.Request.Method, u, c.Request.Body)
 	if err != nil {
-		c.String(http.StatusInternalServerError, fmt.Sprintf("server error %v", err))
+		http.Error(c.Writer, fmt.Sprintf("server error %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -80,7 +89,7 @@ func proxy(c *gin.Context, u string) {
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		c.String(http.StatusInternalServerError, fmt.Sprintf("server error %v", err))
+		http.Error(c.Writer, fmt.Sprintf("server error %v", err), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
@@ -103,7 +112,7 @@ func proxy(c *gin.Context, u string) {
 		}
 	}
 
-	c.Status(resp.StatusCode)
+	c.Writer.WriteHeader(resp.StatusCode)
 	if _, err := io.Copy(c.Writer, resp.Body); err != nil {
 		return
 	}
