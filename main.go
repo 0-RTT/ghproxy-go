@@ -90,7 +90,7 @@ func proxy(c *gin.Context, u string) {
 			return
 		}
 	}
-	c.Header("Cache-Control", "public, max-age=604800")
+	c.Header("Cache-Control", "max-age=604800")
 	for key, values := range resp.Header {
 		for _, value := range values {
 			c.Header(key, value)
