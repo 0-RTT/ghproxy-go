@@ -29,7 +29,7 @@ jobs:
         run: go build -o ghproxy-go ./main.go
 
       - name: 创建 ZIP 文件
-        run: zip ghproxy-go-linux-64.zip ghproxy-go
+        run: zip ghproxy-go-linux-64.zip ghproxy-go blacklist.txt
 
       - name: 创建发布
         uses: softprops/action-gh-release@v1
